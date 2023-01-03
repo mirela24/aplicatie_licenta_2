@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="destinatii_array">
+        <item>Intrare "Sala Pașilor Pierduți"</item>
+        <item>Intrare "Fântână"</item>
+        <item>Intrare "Registratură"</item>
+        <item>Amf. Myller</item>
+        <item>Amf. II.4</item>
+        <item>Sala 2.1</item>
+        <item>Secretariat</item>
+        <item>L4</item>
+        <item>Sala 2.5</item>
+        <item>Sala 2.6</item>
+        <item>L3</item>
+        <item>L1</item>
+        <item>L2</item>
+        <item>Amf. I.3</item>
+    </string-array>
+</resources>

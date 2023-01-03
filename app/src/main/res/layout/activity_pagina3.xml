@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/system_accent1_800"
+    tools:context=".Pagina3">
+
+
+
+    <Button
+        android:id="@+id/third_activity_previous_button"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginRight="110dp"
+        android:layout_marginTop="550dp"
+        android:text="previous"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+</RelativeLayout>
