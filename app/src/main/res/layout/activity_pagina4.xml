@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/system_accent1_800"
+        android:layout_centerInParent="true"
+        tools:context=".Pagina4">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Traseu:"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <Spinner
+            android:id="@+id/SpinnerTraseu"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/color_blob"
+            android:gravity="center"
+            android:spinnerMode="dialog"
+            android:textAlignment="center" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Nod:"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <Spinner
+            android:id="@+id/SpinnerNod"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/color_blob"
+            android:gravity="center"
+            android:spinnerMode="dialog"
+            android:textAlignment="center" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Extra:"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <Spinner
+            android:id="@+id/SpinnerExtra"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/color_blob"
+            android:gravity="center"
+            android:spinnerMode="dialog"
+            android:textAlignment="center" />
+
+
+    </LinearLayout>
+
+    <!--Spinner Algoritmi-->
+
+    <!-- butonul de dupa destinatie -->
+
+    <!-- aaa -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="146dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Algoritm:"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <Spinner
+            android:id="@+id/spinnerAlgoritm"
+            android:layout_width="162dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:background="@android:color/system_accent1_800"
+            android:gravity="center"
+            android:translationX="50dp" />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/Back_button"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginRight="110dp"
+        android:text="done"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
+
+
+
+

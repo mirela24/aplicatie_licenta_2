@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="algoritm_array">
+        <item>APrim</item>
+        <item>AStar</item>
+    </string-array>
+</resources>
