@@ -1,8 +1,10 @@
 package com.example.a3pagini
-
 import android.annotation.SuppressLint
+import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
@@ -39,7 +41,7 @@ class MainActivity : ComponentActivity(), View.OnTouchListener {
         val dh = currentDisplay.bounds.height()
         ghidUAIC= GhidUAIC(mImgZonaTraseu,dw,dh)
 
-        ghidUAIC.calculeazaTraseu()
+        ghidUAIC.calculeazaTraseu(1,3)
         ghidUAIC.deseneaza()
 
         // Setam onTouchListener pentru ImageView
@@ -60,13 +62,13 @@ class MainActivity : ComponentActivity(), View.OnTouchListener {
             }
 
             MotionEvent.ACTION_UP -> {
-                //upX = event.x
-                //upY = event.y
+                /*upX = event.x
+                upY = event.y
 
-                //ghidUAIC.deseneaza()
-                //ghidUAIC.deseneazaLinie(downX, downY, upX, upY)
-                //canvas.drawLine(downX, downY, upX, upY, paint)
-                //mImgZonaTraseu.invalidate()
+                ghidUAIC.deseneaza()
+                ghidUAIC.deseneazaLinie(downX, downY, upX, upY)
+                canvas.drawLine(downX, downY, upX, upY, paint)
+                mImgZonaTraseu.invalidate()*/
             }
         }
         return true

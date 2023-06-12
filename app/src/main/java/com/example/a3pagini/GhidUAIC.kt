@@ -1,7 +1,15 @@
 package com.example.a3pagini
 
-import android.graphics.*
+import android.content.res.XmlResourceParser
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Rect
 import android.widget.ImageView
+import com.example.a3pagini.MatriceRara
+import org.xmlpull.v1.XmlPullParser
 
 
 class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
@@ -20,11 +28,12 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
 
     private lateinit var bmpEtaj1: Bitmap
     private lateinit var cnvEtaj1: Canvas
-    ////o variabila "noduri" array list cu elemente de tip nod (clasa creata ant)
-    private lateinit var noduri: Array<Nod>
 
-    ///declar o variabila "mAD" de tip matrice cu elem float
+    //=====================================
+    private lateinit var noduri: ArrayList<Nod>
+    private lateinit var A:MatriceRara
 
+    private lateinit var djk: Dijkstra
     //=====================================
     private lateinit var paint: Paint
     init{
@@ -46,11 +55,15 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
         rSursa=Rect(0,0,wImg,hImg)
         rDestiatie=Rect(0,0,wImg,hImg)
 
-        ///apelam functia "citeste noduri"
+        creazaGraf()
     }
+    private fun creazaGraf(){
+        //citim informatiile despre noduri si matricea de adiacenta
+        citesteMatriceAdiacenta()
 
-    ///declaram functia "citeste noduri" - ia elem din xml si le duce in nod de mai sus si adiacentele
+        A
 
+    }
     public fun mutaSursa(x: Float, y: Float){
         rSursa.offset(x.toInt()-rSursa.left, y.toInt()-rSursa.top)
     }
@@ -69,11 +82,94 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
         //apoi celelalte etaje
         //desenam traseul
         cnvEtaj1.drawLine(0F, 0F, tempRect.right.toFloat(),tempRect.bottom.toFloat(), paint)
-        ///pt fiecare nod de la etajul 1 din "noduri" apelez cnvEtaj1.draw .. in pc de coord (x,y)
         //............
     }
-    public fun calculeazaTraseu(){
+    public fun citesteNoduri() {
+        noduri= ArrayList<Nod>()
+        var nodCitit: Nod = Nod()
+        var tagCitit: String = ""
+
+        val xmlNoduri: XmlResourceParser =
+            imgInterfata.context.resources.getXml(com.example.a3pagini.R.xml.noduri)
+        xmlNoduri.next()
+        var eventType: Int = xmlNoduri.getEventType()
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            if (eventType == XmlPullParser.START_TAG) {
+                tagCitit = xmlNoduri.getName()
+                if (tagCitit == "nod") {
+                    nodCitit = Nod()
+                }
+            } else if (eventType == XmlPullParser.END_TAG) {
+                if (xmlNoduri.getName() == "nod") {
+                    noduri.add(nodCitit)
+                }
+            } else if (eventType == XmlPullParser.TEXT) {
+                if (tagCitit == "id") nodCitit.Id = xmlNoduri.getText().toInt()
+                if (tagCitit == "X") nodCitit.X = xmlNoduri.getText().toFloat()
+                if (tagCitit == "Y") nodCitit.Y = xmlNoduri.getText().toFloat()
+                if (tagCitit == "Z") nodCitit.Z = xmlNoduri.getText().toFloat()
+                if (tagCitit == "nume") nodCitit.nume = xmlNoduri.getText().toString()
+            }
+            eventType = xmlNoduri.next()
+        }
+    }
+    public fun citesteMatriceAdiacenta() {
+        citesteNoduri()
+        A = MatriceRara(noduri.size,noduri.size)
+        var indexNod1: Int =0
+        var indexNod2: Int =0
+        var tagCitit: String = ""
+
+        val xmlVecini: XmlResourceParser =
+            imgInterfata.context.resources.getXml(com.example.a3pagini.R.xml.vecini)
+        xmlVecini.next()
+        var eventType: Int = xmlVecini.getEventType()
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            if (eventType == XmlPullParser.START_TAG) {
+                tagCitit = xmlVecini.getName()
+            } else if (eventType == XmlPullParser.END_TAG) {
+                if (xmlVecini.getName() == "legatura") {
+                    var n1:Nod = noduri[indexNod1]
+                    var n2:Nod = noduri[indexNod2]
+                    var distanta:Float=1f//distanta dintre cele 2 noduri
+                    A.set(indexNod1,indexNod2,distanta)
+                }
+            } else if (eventType == XmlPullParser.TEXT) {
+                if (tagCitit == "idNod1") indexNod1 = xmlVecini.getText().toInt()
+                if (tagCitit == "idNod2") indexNod2 = xmlVecini.getText().toInt()
+            }
+            eventType = xmlVecini.next()
+        }
+    }
+
+
+
+    public fun calculeazaTraseu(start: Int, stop: Int){
+
+
+
+
         //determina traseul
+
+
+
+
+        /*var traseuDJK: List<Int>
+        var mAd: Array<IntArray?>
+
+        mAd =
+            Array<IntArray>(nrLin * nrCol) { IntArray(nrLin * nrCol) }!! //eventual matrice rara sau cu ad.
+        traseuDJK = ArrayList()
+        traseu.add(start)
+
+        try {
+            djk = Dijkstra(nrLin * nrCol, mAd, start)
+            traseuDJK = djk.daTraseu(stop)
+        } catch (e: Exception) {
+            traseuDJK = ArrayList<Int>()
+        }*/
+
+
         //........
         //construim imaginile pentru etaje
         creazaImaginiTraseu()
