@@ -1,4 +1,5 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<Noduri xmlns:android="http://schemas.android.com/apk/res/android">
 	<nod>
 		<id>16</id>
 		<X>12.25</X>
@@ -166,5 +167,4 @@
 		<Z>2</Z>
 		<nume></nume>
 	</nod>
-
-</resources>
+</Noduri>
