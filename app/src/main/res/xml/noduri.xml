@@ -2,168 +2,160 @@
 <Noduri xmlns:android="http://schemas.android.com/apk/res/android">
 	<nod>
 		<id>16</id>
-		<X>12.25</X>
-		<Y>9.75</Y>
+		<X>387</X>
+		<Y>248</Y>
 		<Z>2</Z>
 		<nume></nume>
 	</nod>
 
 	<nod>
 		<id>23</id>
-		<X>12.8</X>
-		<Y>9.75</Y>
+		<X>403</X>
+		<Y>248</Y>
 		<Z>2</Z>
 		<nume></nume>
 	</nod>
 
 	<nod>
 		<id>24</id>
-		<X>12.8</X>
-		<Y>10.4</Y>
+		<X>403</X>
+		<Y>265</Y>
 		<Z>2</Z>
 		<nume></nume>
 	</nod>
 
 	<nod>
 		<id>25</id>
-		<X>11.35</X>
-		<Y>10.4</Y>
+		<X>355</X>
+		<Y>265</Y>
 		<Z>2</Z>
 		<nume>Sala 2.6</nume>
 	</nod>
 
 	<nod>
 		<id>26</id>
-		<X>10.25</X>
-		<Y>10.4</Y>
+		<X>322</X>
+		<Y>265</Y>
 		<Z>2</Z>
 		<nume>Sala 2.5</nume>
 	</nod>
 
 	<nod>
 		<id>27</id>
-		<X>8.9</X>
-		<Y>10.4</Y>
+		<X>278</X>
+		<Y>265</Y>
 		<Z>2</Z>
 		<nume>L4</nume>
 	</nod>
 
 	<nod>
 		<id>28</id>
-		<X>6.4</X>
-		<Y>10.4</Y>
+		<X>195</X>
+		<Y>265</Y>
 		<Z>2</Z>
 		<nume></nume>
 	</nod>
 
 	<nod>
 		<id>29</id>
-		<X>3.8</X>
-		<Y>10.4</Y>
+		<X>115</X>
+		<Y>265</Y>
 		<Z>2</Z>
 		<nume>Decanat</nume>
 	</nod>
 
 	<nod>
 		<id>30</id>
-		<X>3.3</X>
-		<Y>10.4</Y>
+		<X>75</X>
+		<Y>265</Y>
 		<Z>2</Z>
 		<nume>Secretariat</nume>
 	</nod>
 
 	<nod>
 		<id>31</id>
-		<X>3.3</X>
-		<Y>11.7</Y>
+		<X>75</X>
+		<Y>298</Y>
 		<Z>2</Z>
 		<nume>Sala 2.1</nume>
 	</nod>
 
 	<nod>
 		<id>32</id>
-		<X>3.3</X>
-		<Y>13</Y>
+		<X>75</X>
+		<Y>363</Y>
 		<Z>2</Z>
 		<nume></nume>
 	</nod>
 
 	<nod>
 		<id>33</id>
-		<X>3</X>
-		<Y>13</Y>
-		<Z>2</Z>
-		<nume>Amfiteatrul II.4</nume>
-	</nod>
-
-	<nod>
-		<id>33</id>
-		<X>3</X>
-		<Y>13</Y>
+		<X>90</X>
+		<Y>363</Y>
 		<Z>2</Z>
 		<nume>Amfiteatrul II.4</nume>
 	</nod>
 
 	<nod>
 		<id>34</id>
-		<X>3.3</X>
-		<Y>15.75</Y>
+		<X>75</X>
+		<Y>460</Y>
 		<Z>2</Z>
 		<nume></nume>
 	</nod>
 
 	<nod>
 		<id>35</id>
-		<X>5.2</X>
-		<Y>15.75</Y>
+		<X>145</X>
+		<Y>460</Y>
 		<Z>2</Z>
 		<nume>Seminar Matematica</nume>
 	</nod>
 
 	<nod>
 		<id>36</id>
-		<X>6.4</X>
-		<Y>15.75</Y>
+		<X>195</X>
+		<Y>460</Y>
 		<Z>2</Z>
 		<nume>Amfiteatrul Myller</nume>
 	</nod>
 
 	<nod>
 		<id>37</id>
-		<X>6.4</X>
-		<Y>13</Y>
+		<X>195</X>
+		<Y>363</Y>
 		<Z>2</Z>
 		<nume></nume>
 	</nod>
 
 	<nod>
 		<id>39</id>
-		<X>9.5</X>
-		<Y>15.75</Y>
+		<X>297</X>
+		<Y>460</Y>
 		<Z>2</Z>
 		<nume></nume>
 	</nod>
 
 	<nod>
 		<id>40</id>
-		<X>9.5</X>
-		<Y>16.45</Y>
+		<X>297</X>
+		<Y>498</Y>
 		<Z>2</Z>
 		<nume></nume>
 	</nod>
 
 	<nod>
 		<id>41</id>
-		<X>21.75</X>
-		<Y>16.45</Y>
+		<X>672</X>
+		<Y>498</Y>
 		<Z>2</Z>
 		<nume></nume>
 	</nod>
 
 	<nod>
 		<id>42</id>
-		<X>21.75</X>
-		<Y>17.35</Y>
+		<X>672</X>
+		<Y>525</Y>
 		<Z>2</Z>
 		<nume></nume>
 	</nod>

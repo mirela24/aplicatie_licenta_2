@@ -61,7 +61,7 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
         //citim informatiile despre noduri si matricea de adiacenta
         citesteMatriceAdiacenta()
 
-        A
+
 
     }
     public fun mutaSursa(x: Float, y: Float){
@@ -71,6 +71,9 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
         if(etajCurent==1)
             cnvInterfata.drawBitmap(bmpEtaj1,rSursa,rDestiatie,paint)
         imgInterfata.invalidate()
+
+
+
     }
     private fun creazaImaginiTraseu(){
         paint = Paint()
@@ -81,8 +84,28 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
         cnvEtaj1.drawBitmap(imgEtaj1,tempRect,tempRect,null)
         //apoi celelalte etaje
         //desenam traseul
-        cnvEtaj1.drawLine(0F, 0F, tempRect.right.toFloat(),tempRect.bottom.toFloat(), paint)
+        //cnvEtaj1.drawLine(0F, 0F, tempRect.right.toFloat(),tempRect.bottom.toFloat(), paint)
         //............
+
+       for(i in 0..10) {
+           cnvEtaj1.drawLine(noduri[i].X+10, noduri[i].Y+15, noduri[i+1].X+10, noduri[i+1].Y+15, paint)
+         }
+        cnvEtaj1.drawLine(noduri[10].X+10, noduri[10].Y+15, noduri[12].X+10, noduri[12].Y+15, paint)
+        for(i in 12..14) {
+            cnvEtaj1.drawLine(noduri[i].X+10, noduri[i].Y+15, noduri[i+1].X+10, noduri[i+1].Y+15, paint)
+        }
+        cnvEtaj1.drawLine(noduri[13].X+10, noduri[13].Y+15, noduri[16].X+10, noduri[16].Y+15, paint)
+
+        for(i in 16..18) {
+            cnvEtaj1.drawLine(noduri[i].X+10, noduri[i].Y+15, noduri[i+1].X+10, noduri[i+1].Y+15, paint)
+        }
+
+        for(nod: Nod in noduri) {
+           cnvEtaj1.drawOval(nod.X-10, nod.Y-5, nod.X+35-10, nod.Y+35-5, paint)
+        }
+        imgInterfata.invalidate()
+
+
     }
     public fun citesteNoduri() {
         noduri= ArrayList<Nod>()
@@ -105,17 +128,26 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
                 }
             } else if (eventType == XmlPullParser.TEXT) {
                 if (tagCitit == "id") nodCitit.Id = xmlNoduri.getText().toInt()
-                if (tagCitit == "X") nodCitit.X = xmlNoduri.getText().toFloat()
-                if (tagCitit == "Y") nodCitit.Y = xmlNoduri.getText().toFloat()
-                if (tagCitit == "Z") nodCitit.Z = xmlNoduri.getText().toFloat()
+                if (tagCitit == "X") nodCitit.X = 2.75f*xmlNoduri.getText().toFloat()
+                if (tagCitit == "Y") nodCitit.Y = 2.75f*xmlNoduri.getText().toFloat()
+                if (tagCitit == "Z") nodCitit.Z = 2.75f*xmlNoduri.getText().toFloat()
                 if (tagCitit == "nume") nodCitit.nume = xmlNoduri.getText().toString()
             }
             eventType = xmlNoduri.next()
         }
     }
+
+    public fun daNod(id: Int):Nod {
+        for(nod: Nod in noduri) {
+            if(nod.Id==id)
+                return nod
+        }
+        return Nod()
+    }
+
     public fun citesteMatriceAdiacenta() {
         citesteNoduri()
-        A = MatriceRara(noduri.size,noduri.size)
+       A = MatriceRara(noduri.size,noduri.size)
         var indexNod1: Int =0
         var indexNod2: Int =0
         var tagCitit: String = ""
@@ -129,9 +161,13 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
                 tagCitit = xmlVecini.getName()
             } else if (eventType == XmlPullParser.END_TAG) {
                 if (xmlVecini.getName() == "legatura") {
-                    var n1:Nod = noduri[indexNod1]
-                    var n2:Nod = noduri[indexNod2]
-                    var distanta:Float=1f//distanta dintre cele 2 noduri
+                    var n1:Nod = daNod(indexNod1)
+                    var n2:Nod = daNod(indexNod2)
+                    var distanta: Float
+                    distanta = (Math.pow((n1.X-n2.X).toDouble(), 2.0) + Math.pow((n1.Y-n2.Y).toDouble(),
+                        2.0
+                    )).toFloat()
+                    distanta = Math.sqrt(distanta.toDouble()).toFloat()
                     A.set(indexNod1,indexNod2,distanta)
                 }
             } else if (eventType == XmlPullParser.TEXT) {
@@ -140,6 +176,7 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
             }
             eventType = xmlVecini.next()
         }
+
     }
 
 

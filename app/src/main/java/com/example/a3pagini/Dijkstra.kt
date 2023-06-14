@@ -1,13 +1,13 @@
 package com.example.a3pagini
 
-class Dijkstra(private val nrNoduri: Int, mAd: Array<IntArray>, start: Int) {
+class Dijkstra(private val nrNoduri: Int, mAd: Array<IntArray>, start: Int, noduri: ArrayList<Nod>) {
     private val dist: IntArray //va tine distanta cea mai scurta de la sursa la nodul i
     private val pred: IntArray
     private val vizitat: BooleanArray //va fi true daca nodul i este inclus in arborele de drum minim
 
     init {
-        dist = IntArray(nrNoduri)
-        pred = IntArray(nrNoduri)
+        dist = IntArray(noduri.size+1)
+        pred = IntArray(noduri.size+1)
         vizitat = BooleanArray(nrNoduri)
         for (i in 0 until nrNoduri) {
             dist[i] = Int.MAX_VALUE

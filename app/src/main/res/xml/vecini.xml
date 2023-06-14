@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vecini xmlns:android="http://schemas.android.com/apk/res/android">
     <legatura>
-        <idNod1>16B</idNod1>
+        <idNod1>16</idNod1>
         <idNod2>23</idNod2>
     </legatura>
     <legatura>
         <idNod1>23</idNod1>
-        <idNod2>16B</idNod2>
+        <idNod2>16</idNod2>
     </legatura>
     <legatura>
         <idNod1>23</idNod1>
