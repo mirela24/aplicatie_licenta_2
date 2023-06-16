@@ -184,18 +184,19 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
     public fun calculeazaTraseu(start: Int, stop: Int){
 
 
-
+        /*
 
         //determina traseul
 
 
 
 
-        /*var traseuDJK: List<Int>
-        var mAd: Array<IntArray?>
+        var traseuDJK: List<Int>
+        var nrLin: Int = 0
+        var nrCol: Int = 0
 
-        mAd =
-            Array<IntArray>(nrLin * nrCol) { IntArray(nrLin * nrCol) }!! //eventual matrice rara sau cu ad.
+
+        val mAd: MatriceRara = MatriceRara(nrLin, nrCol)  //eventual matrice rara sau cu ad.
         traseuDJK = ArrayList()
         traseu.add(start)
 
@@ -209,6 +210,7 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
 
         //........
         //construim imaginile pentru etaje
+
         creazaImaginiTraseu()
     }
 }

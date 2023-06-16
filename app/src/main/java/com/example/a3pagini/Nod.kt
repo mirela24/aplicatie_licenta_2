@@ -6,12 +6,11 @@ class Nod{
     public var Y: Float = 0f
     public var Z: Float = 0f
     public var nume: String = ""
-}
-/*class Nod {
-    private var valEuristica = 0
-    private var nod = 0
 
-    constructor(nod: Int, valEuristica: Int) {
+    private var valEuristica = 0f
+    public var nod = 0
+
+    constructor(nod: Int, valEuristica: Float) {
         this.valEuristica = valEuristica
         this.nod = nod
     }
@@ -22,4 +21,4 @@ class Nod{
         if (valEuristica < nod.valEuristica) return -1
         return if (valEuristica > nod.valEuristica) 1 else 0
     }
-}*/
+}
