@@ -41,7 +41,8 @@ class MainActivity : ComponentActivity(), View.OnTouchListener {
         val dh = currentDisplay.bounds.height()
         ghidUAIC= GhidUAIC(mImgZonaTraseu,dw,dh)
 
-        ghidUAIC.calculeazaTraseu(1,3)
+
+        ghidUAIC.calculeazaTraseu(1,12)
         ghidUAIC.deseneaza()
 
         // Setam onTouchListener pentru ImageView

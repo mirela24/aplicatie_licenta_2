@@ -1,11 +1,13 @@
 package com.example.a3pagini
 
-class Dijkstra(private val nrNoduri: Int, mAd: MatriceRara, start: Int, noduri: ArrayList<Nod>) {
+class Dijkstra(noduri: ArrayList<Nod>, mAd: MatriceRara, start: Int ) {
     private val dist: FloatArray //va tine distanta cea mai scurta de la sursa la nodul i
     private val pred: IntArray
     private val vizitat: BooleanArray //va fi true daca nodul i este inclus in arborele de drum minim
+    private val nrNoduri: Int
 
     init {
+        nrNoduri=noduri.size
         dist = FloatArray(noduri.size+1)
         pred = IntArray(noduri.size+1)
         vizitat = BooleanArray(nrNoduri)
@@ -39,7 +41,7 @@ class Dijkstra(private val nrNoduri: Int, mAd: MatriceRara, start: Int, noduri: 
         return min_index
     }
 
-    fun daTraseu(stop: Int): List<Int>? {
+    fun daTraseu(stop: Int): List<Int> {
         val rez: MutableList<Int> = ArrayList()
         var temp = stop
         while (temp >= 0) {

@@ -36,6 +36,7 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
     private lateinit var djk: Dijkstra
     //=====================================
     private lateinit var paint: Paint
+    private lateinit var paint2: Paint
     init{
         //preluam informatiile de la constructorul principal
         imgInterfata = imgZonaTraseu
@@ -79,30 +80,31 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
         paint = Paint()
         paint.color = Color.RED
         paint.strokeWidth = 11F
+
+        paint2 = Paint()
+        paint2.color = Color.BLUE
+        paint2.strokeWidth = 14F
+
         var tempRect : Rect = Rect(0,0, bmpEtaj1.width,bmpEtaj1.height)
         //desenam imaginea etajului
         cnvEtaj1.drawBitmap(imgEtaj1,tempRect,tempRect,null)
+        // desenam toate legaturile
+        for(i in 0..noduri.size-1)
+        {
+            for(j in i+1..noduri.size-1)
+            {
+                if(A.get(i,j)!=0f) cnvEtaj1.drawLine(noduri[i].X+10, noduri[i].Y+15, noduri[j].X+10, noduri[j].Y+15, paint)
+            }
+        }
         //apoi celelalte etaje
         //desenam traseul
+
         //cnvEtaj1.drawLine(0F, 0F, tempRect.right.toFloat(),tempRect.bottom.toFloat(), paint)
         //............
 
-       for(i in 0..10) {
-           cnvEtaj1.drawLine(noduri[i].X+10, noduri[i].Y+15, noduri[i+1].X+10, noduri[i+1].Y+15, paint)
-         }
-        cnvEtaj1.drawLine(noduri[10].X+10, noduri[10].Y+15, noduri[12].X+10, noduri[12].Y+15, paint)
-        for(i in 12..14) {
-            cnvEtaj1.drawLine(noduri[i].X+10, noduri[i].Y+15, noduri[i+1].X+10, noduri[i+1].Y+15, paint)
-        }
-        cnvEtaj1.drawLine(noduri[13].X+10, noduri[13].Y+15, noduri[16].X+10, noduri[16].Y+15, paint)
 
-        for(i in 16..18) {
-            cnvEtaj1.drawLine(noduri[i].X+10, noduri[i].Y+15, noduri[i+1].X+10, noduri[i+1].Y+15, paint)
-        }
 
-        for(nod: Nod in noduri) {
-           cnvEtaj1.drawOval(nod.X-10, nod.Y-5, nod.X+35-10, nod.Y+35-5, paint)
-        }
+
         imgInterfata.invalidate()
 
 
@@ -145,11 +147,19 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
         return Nod()
     }
 
+    public fun daIndexNod(id: Int):Int {
+        for(i in 0..noduri.size-1) {
+            if(noduri[i].Id == id)
+                return i
+        }
+        return -1
+    }
+
     public fun citesteMatriceAdiacenta() {
         citesteNoduri()
        A = MatriceRara(noduri.size,noduri.size)
-        var indexNod1: Int =0
-        var indexNod2: Int =0
+        var idNod1: Int =0
+        var idNod2: Int =0
         var tagCitit: String = ""
 
         val xmlVecini: XmlResourceParser =
@@ -161,18 +171,23 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
                 tagCitit = xmlVecini.getName()
             } else if (eventType == XmlPullParser.END_TAG) {
                 if (xmlVecini.getName() == "legatura") {
-                    var n1:Nod = daNod(indexNod1)
-                    var n2:Nod = daNod(indexNod2)
+                    var n1:Nod = daNod(idNod1)
+                    var n2:Nod = daNod(idNod2)
                     var distanta: Float
                     distanta = (Math.pow((n1.X-n2.X).toDouble(), 2.0) + Math.pow((n1.Y-n2.Y).toDouble(),
                         2.0
                     )).toFloat()
                     distanta = Math.sqrt(distanta.toDouble()).toFloat()
-                    A.set(indexNod1,indexNod2,distanta)
+                    idNod1=daIndexNod(idNod1)
+                    idNod2=daIndexNod(idNod2)
+                    if(idNod1 >= 0 && idNod2 >=0)
+                    {
+                        A.set(idNod1,idNod2,distanta)
+                    }
                 }
             } else if (eventType == XmlPullParser.TEXT) {
-                if (tagCitit == "idNod1") indexNod1 = xmlVecini.getText().toInt()
-                if (tagCitit == "idNod2") indexNod2 = xmlVecini.getText().toInt()
+                if (tagCitit == "idNod1") idNod1 = xmlVecini.getText().toInt()
+                if (tagCitit == "idNod2") idNod2 = xmlVecini.getText().toInt()
             }
             eventType = xmlVecini.next()
         }
@@ -183,34 +198,22 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
 
     public fun calculeazaTraseu(start: Int, stop: Int){
 
-
-        /*
-
-        //determina traseul
-
-
-
+        //construim imaginile pentru etaje
+        creazaImaginiTraseu()
+        //calculam si desenam traseul
 
         var traseuDJK: List<Int>
-        var nrLin: Int = 0
-        var nrCol: Int = 0
+        try{
+             djk = Dijkstra(noduri, A, start)
+             traseuDJK = djk.daTraseu(stop)
+        }catch (e: Exception) {
+             traseuDJK = ArrayList<Int>()
+        }
+        for(i in 1..traseuDJK.size-1)
 
-
-        val mAd: MatriceRara = MatriceRara(nrLin, nrCol)  //eventual matrice rara sau cu ad.
-        traseuDJK = ArrayList()
-        traseu.add(start)
-
-        try {
-            djk = Dijkstra(nrLin * nrCol, mAd, start)
-            traseuDJK = djk.daTraseu(stop)
-        } catch (e: Exception) {
-            traseuDJK = ArrayList<Int>()
-        }*/
-
-
-        //........
-        //construim imaginile pentru etaje
-
-        creazaImaginiTraseu()
+        {
+            cnvEtaj1.drawLine(noduri[i].X+10, noduri[i].Y+15, noduri[i-1].X+10, noduri[i-1].Y+15, paint2)
+        }
+        imgInterfata.invalidate()
     }
 }

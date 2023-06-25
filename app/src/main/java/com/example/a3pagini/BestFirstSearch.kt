@@ -25,7 +25,7 @@ class BestFirstSearch(
         vizitat[start] = true
         while (!priorityQueue.isEmpty()) {
             val u = daNodCuValEuristicaMin()
-            if (u == stop) ///return
+            //if (u == stop) ///return
 
             for (i in 0 until nrNoduri) {
                 if (!vizitat[i] && mAd.get(u,i) != 0f) {
