@@ -29,6 +29,9 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
     private lateinit var bmpEtaj1: Bitmap
     private lateinit var cnvEtaj1: Canvas
 
+    private lateinit var bmpEtaj0: Bitmap
+    private lateinit var cnvEtaj0: Canvas
+
     //=====================================
     private lateinit var noduri: ArrayList<Nod>
     private lateinit var A:MatriceRara
@@ -46,12 +49,12 @@ class GhidUAIC (imgZonaTraseu: ImageView, wImg: Int, hImg:Int){
         bmpInterfata = Bitmap.createBitmap(wTraseu, hTraseu, Bitmap.Config.ARGB_8888)
         // Preluam panza(canvas-ul) corespunzatoare bitmap-ului
         cnvInterfata = Canvas(bmpInterfata)
-        // Setam bitmap-ul drept continut pentru ImageView-ul specificat
+        // Setam bitmap-ul drept conimgEtaj1 = BitmapFactory.decodeResource(imgInterfata.context.resources, com.example.a3pagini.R.drawable.etaj_secretariat)
+        //        bmpEtaj1 = Bitmap.createBitmap(imgEtaj1.width, imgEtaj1.height, Bitmap.Config.ARGB_8888)
+        //        cnvEtaj1 = Canvas(bmpEtaj1)
+        //        tinut pentru ImageView-ul specificat
         imgInterfata.setImageBitmap(bmpInterfata)
         //initializam resursele
-        imgEtaj1 = BitmapFactory.decodeResource(imgInterfata.context.resources, com.example.a3pagini.R.drawable.etaj_secretariat)
-        bmpEtaj1 = Bitmap.createBitmap(imgEtaj1.width, imgEtaj1.height, Bitmap.Config.ARGB_8888)
-        cnvEtaj1 = Canvas(bmpEtaj1)
 
         rSursa=Rect(0,0,wImg,hImg)
         rDestiatie=Rect(0,0,wImg,hImg)
